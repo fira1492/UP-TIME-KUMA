@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: uptime-kuma
+    runtime: docker
+    plan: starter
+    healthCheckPath: /
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: UPTIME_KUMA_PORT
+        value: 3001
+    disk:
+      name: uptime-kuma-data
+      mountPath: /app/data
+      sizeGB: 1
