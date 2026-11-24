@@ -24,6 +24,9 @@ RUN npm ci --legacy-peer-deps
 # Copy application files
 COPY . .
 
+# Precompile TypeScript server files
+RUN npm run precompile-server
+
 # Build frontend
 RUN npm run build
 
