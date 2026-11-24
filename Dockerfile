@@ -18,14 +18,17 @@ RUN apt-get update && \
 # Copy package files
 COPY package*.json ./
 
-# Install dependencies
-RUN npm ci --omit=dev --legacy-peer-deps
+# Install ALL dependencies (including dev) for building
+RUN npm ci --legacy-peer-deps
 
 # Copy application files
 COPY . .
 
 # Build frontend
 RUN npm run build
+
+# Remove dev dependencies after build to reduce image size
+RUN npm prune --production --legacy-peer-deps
 
 # Create data directory
 RUN mkdir -p /app/data
