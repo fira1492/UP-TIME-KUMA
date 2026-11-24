@@ -19,7 +19,7 @@ RUN apt-get update && \
 COPY package*.json ./
 
 # Install dependencies
-RUN npm ci --omit=dev
+RUN npm ci --omit=dev --legacy-peer-deps
 
 # Copy application files
 COPY . .
